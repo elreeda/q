@@ -1,0 +1,34 @@
+.view-surah.container
+  background-color: #116ECC
+  height: 100vh
+  position: relative
+  display: flex
+  .col-1
+    width: 75%
+    position: relative
+  .col-2
+    width: 25%
+    position: relative
+    .column.surahs
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      margin: 0
+      padding: 0
+      list-style: none
+      height: 65vh
+      width: 100%
+      overflow: hidden
+      .surah
+        cursor: pointer
+        font-size: 14px
+        font-family: 'Roboto', sans-serif
+        color: rgba(255, 255, 255, 0.61)
+        padding: 15px 0 15px 15px
+        border-radius: 1px 0 0 1px
+        // width: 100%
+        &.active
+          background: linear-gradient(to right, #ffffff 0%,#ffffff 82%,#116ecc 100%)
+          color: #116ECC
+        .name
+          margin-left: 15px
