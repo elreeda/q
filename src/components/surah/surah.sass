@@ -9,26 +9,37 @@
   .col-2
     width: 25%
     position: relative
-    .column.surahs
+    .content
       position: absolute
       top: 50%
       transform: translateY(-50%)
-      margin: 0
-      padding: 0
-      list-style: none
       height: 65vh
       width: 100%
-      overflow: hidden
-      .surah
-        cursor: pointer
-        font-size: 14px
-        font-family: 'Roboto', sans-serif
-        color: rgba(255, 255, 255, 0.61)
-        padding: 15px 0 15px 15px
-        border-radius: 1px 0 0 1px
-        // width: 100%
-        &.active
-          background: linear-gradient(to right, #ffffff 0%,#ffffff 82%,#116ecc 100%)
-          color: #116ECC
-        .name
-          margin-left: 15px
+      overflow: scroll
+      .column.surahs
+        margin: 0
+        padding: 0
+        list-style: none
+        .surah
+          cursor: pointer
+          font-size: 14px
+          font-family: 'Roboto', sans-serif
+          color: rgba(255, 255, 255, 0.61)
+          padding: 15px 0 15px 15px
+          border-radius: 1px 0 0 1px
+          &.active
+            background: linear-gradient(to right, #ffffff 0%,#ffffff 82%, #116ECC 100%)
+            color: #116ECC
+            position: relative
+            transition: 0.3s ease-in
+            &::before
+              content: ''
+              height: 2px
+              width: 100%
+              display: block
+              background-color: #116ecc
+              position: absolute
+              left: 0
+              top: 50%
+          .name
+            margin-left: 15px

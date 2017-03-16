@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchSurahs, getSurah, getReciter } from '../../actions/index'
 import Current from './current'
-import Player from '../player/index'
 import './surah.sass'
 
 class Surah extends Component {
@@ -21,12 +20,12 @@ class Surah extends Component {
       <div className="view-surah container">
         <div className="col-1">
           <Current
-            surah={this.props.surah}
-            reciter={this.props.reciter}/>
-          <Player serverUrl={this.props.reciter.Server} surah={this.props.surah.id} />
+            surah={this.props.surah.surah}
+            reciter={this.props.reciter}
+          />
         </div>
         <div className="col-2">
-          <SurahsList surahs={this.props.surahs} active={this.props.surah.id} />
+          <SurahsList surahs={this.props.surahs} active={this.props.surah.surah.id} reciter={this.props.reciter.id} />
         </div>
       </div>
     )

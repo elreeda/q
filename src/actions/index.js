@@ -6,7 +6,8 @@ import {
   GET_SURAH,
   PLAY,
   PAUSE,
-  LOAD
+  NEXT,
+  BACK
 } from './action-types'
 import _ from 'lodash'
 import { reciters } from '../config/reciters'
@@ -43,18 +44,35 @@ export function getReciter (id) {
 export function getSurah (id, reciterId) {
   return {
     type: GET_SURAH,
-    payload: id ? _.filter(surahs, { id })[0] : fetchSurahs(reciterId).payload[0]
+    surah: id ? _.filter(surahs, { id })[0] : fetchSurahs(reciterId).payload[0],
+    reciter: getReciter(reciterId).payload
   }
 }
 
 export function play() {
   return {
     type: PLAY
-  };
+  }
 }
 
 export function pause() {
   return {
     type: PAUSE
-  };
+  }
+}
+
+export function next(id, reciterId) {
+  const reciterSurahs = fetchSurahs(reciterId).payload
+  return {
+    type: NEXT,
+    surah: reciterSurahs[_.findLastIndex(reciterSurahs, { id }) + 1]
+  }
+}
+
+export function back(id, reciterId) {
+  const reciterSurahs = fetchSurahs(reciterId).payload
+  return {
+    type: BACK,
+    surah: reciterSurahs[_.findLastIndex(reciterSurahs, { id }) - 1]
+  }
 }

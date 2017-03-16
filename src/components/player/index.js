@@ -1,46 +1,35 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { play, pause, next, back } from '../../actions/index'
+import './player.sass'
 
 class Player extends Component {
-  state = {
-    file: new Audio(this.props.serverUrl + '/' + ('000'+ this.props.surah).slice(-3) + '.mp3'),
-    playing: false
-  }
-  componentDidMount () {
-    this.state.file.play()
-    this.setState({
-      playing: true
-    })
-  }
-  onPause () {
-    if (this.state.playing) {
-      this.state.file.pause()
-      this.setState({
-        playing: false
-      })
-    } else {
-      this.state.file.play()
-      this.setState({
-        playing: true
-      })
-    }
-  }
-  onFinish () {
-    console.log('log');
+  handlePreviousSurah () {
+    this.props.back(this.props.surah.surah.id, this.props.reciter.id)
   }
   render() {
     return (
       <div className="player">
-        {/* <audio id='video1' controls>
-          <source src={this.props.serverUrl + '/' + ('000'+ this.props.surah).slice(-3) + '.mp3'} type="audio/mpeg"/>
-        </audio> */}
-        <button
-          onClick={this.onPause.bind(this)}
-          >
-          Pause
-        </button>
+        <span onClick={this.handlePreviousSurah.bind(this)} className="previous controls"></span>
+        <span
+          className={ this.props.surah.isPlaying ? 'middle pause' : 'middle play' }
+          onClick={() => this.props.surah.isPlaying ? this.props.pause() : this.props.play()}>
+
+        </span>
+        <span onClick={() => this.props.next(this.props.surah.surah.id, this.props.reciter.id)} className="next controls"></span>
       </div>
     )
   }
 }
 
-export default Player
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({ play, pause, next, back }, dispatch)
+}
+
+function mapStateToProps ({ surah, reciter }) {
+  return { surah, reciter }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player)

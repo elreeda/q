@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>play-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="View-Sura-" transform="translate(-468.000000, -648.000000)" fill="#FFFFFF">
+            <g id="play-button" transform="translate(468.000000, 648.000000)">
+                <g id="Capa_1">
+                    <path d="M25,0 C11.215,0 0,11.215 0,25 C0,38.785 11.215,50 25,50 C38.785,50 50,38.785 50,25 C50,11.215 38.785,0 25,0 Z M37.9691667,25.6883333 L19.6358333,38.1883333 C19.495,38.2841667 19.3308333,38.3333333 19.1666667,38.3333333 C19.0333333,38.3333333 18.8991667,38.3016667 18.7775,38.2366667 C18.5041667,38.0925 18.3333333,37.8091667 18.3333333,37.5 L18.3333333,12.5 C18.3333333,12.1908333 18.5041667,11.9075 18.7775,11.7633333 C19.0508333,11.6183333 19.3808333,11.6383333 19.6366667,11.8116667 L37.97,24.3116667 C38.1966667,24.4666667 38.3333333,24.7241667 38.3333333,25 C38.3333333,25.2758333 38.1966667,25.5333333 37.9691667,25.6883333 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
