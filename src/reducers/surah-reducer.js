@@ -5,7 +5,8 @@ const initialState = {
   surah: null,
   file: null,
   reciter: null,
-  progress: 0
+  progress: 0,
+  currentTime: 0
 }
 
 export default function surah (state = initialState, action) {

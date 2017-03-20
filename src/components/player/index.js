@@ -8,6 +8,9 @@ class Player extends Component {
   handlePreviousSurah () {
     this.props.back(this.props.surah.surah.id, this.props.reciter.id)
   }
+  handleNextSurah () {
+    this.props.next(this.props.surah.surah.id, this.props.reciter.id)
+  }
   render() {
     return (
       <div className="player">
@@ -17,7 +20,7 @@ class Player extends Component {
           onClick={() => this.props.surah.isPlaying ? this.props.pause() : this.props.play()}>
 
         </span>
-        <span onClick={() => this.props.next(this.props.surah.surah.id, this.props.reciter.id)} className="next controls"></span>
+        <span onClick={this.handleNextSurah.bind(this)} className="next controls"></span>
       </div>
     )
   }

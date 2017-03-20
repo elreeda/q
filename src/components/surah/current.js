@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Player from '../player/index'
 import './current.sass'
 
+
 class Current extends Component {
   render() {
     return (
