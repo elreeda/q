@@ -11,13 +11,21 @@ class SurahsList extends Component {
     }
   }
   componentWillReceiveProps (nextProps) {
-    nextProps.surah.file.ontimeupdate = (e) => {
-      this.setState({
-        progress: (nextProps.surah.file.currentTime / nextProps.surah.file.duration) * 100
-      })
+    if (nextProps.surah.surah) {
+      nextProps.surah.file.ontimeupdate = (e) => {
+        this.setState({
+          progress: (nextProps.surah.file.currentTime / nextProps.surah.file.duration) * 100
+        })
+      }
+      nextProps.surah.file.onended = () => {
+        this.nextTrack()
+      }
     }
-    nextProps.surah.file.onended = () => {
-      this.nextTrack()
+  }
+  componentWillUnmount () {
+    if (this.props.surah.surah) {
+      this.props.surah.file.ontimeupdate = null
+      this.props.surah.file.onended = null
     }
   }
   nextTrack () {

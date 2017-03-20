@@ -10,7 +10,7 @@ import './surah.sass'
 class Surah extends Component {
   componentDidMount () {
     this.props.fetchSurahs(this.props.params.id)
-    this.props.getSurah(null, this.props.params.id)
+    // this.props.getSurah(null, this.props.params.id)
     this.props.getReciter(this.props.params.id)
   }
   backButton () {
@@ -34,20 +34,25 @@ class Surah extends Component {
     if (!this.props.surahs) {
       return <span>wait</span>
     }
+    const currentSurahComponent = this.props.surah.surah ? (
+      <div className="col-1">
+        <Current
+            surah={this.props.surah.surah}
+            reciter={this.props.reciter}
+          />
+      </div>
+    )
+    : null
     return (
       <div className="view-surah container">
         <div className="back">
           <Link to='/'>{this.backButton()}</Link>
         </div>
-        <div className="col-1">
-          <Current
-            file={this.props.surah.file}
-            surah={this.props.surah.surah}
-            reciter={this.props.reciter}
-          />
-        </div>
-        <div className="col-2">
-          <SurahsList surahs={this.props.surahs} active={this.props.surah.surah.id} reciter={this.props.reciter.id} />
+        <div className="content-list" style={{marginLeft: !this.props.surah.surah ? '-10%': 'auto'}}>
+          {currentSurahComponent}
+          <div className="col-2">
+            <SurahsList surahs={this.props.surahs} active={this.props.surah.surah ? this.props.surah.surah.id : null} reciter={this.props.reciter.id} />
+          </div>
         </div>
       </div>
     )
