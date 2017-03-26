@@ -13,14 +13,16 @@ class Player extends Component {
   }
   render() {
     return (
-      <div className="player">
-        <span onClick={this.handlePreviousSurah.bind(this)} className="previous controls"></span>
-        <span
-          className={ this.props.surah.isPlaying ? 'middle pause' : 'middle play' }
-          onClick={() => this.props.surah.isPlaying ? this.props.pause() : this.props.play()}>
+      <div className={this.props.path === '/' ? 'player home-player' : 'player blue'}>
+        <div className="group-control">
+          <span onClick={this.handlePreviousSurah.bind(this)} className="previous controls"></span>
+          <span
+            className={ this.props.surah.isPlaying ? 'middle pause' : 'middle play' }
+            onClick={() => this.props.surah.isPlaying ? this.props.pause() : this.props.play()}>
 
-        </span>
-        <span onClick={this.handleNextSurah.bind(this)} className="next controls"></span>
+          </span>
+          <span onClick={this.handleNextSurah.bind(this)} className="next controls"></span>
+        </div>
       </div>
     )
   }

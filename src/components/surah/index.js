@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Overdrive from 'react-overdrive'
 import SurahsList from './surahsList'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -44,17 +45,19 @@ class Surah extends Component {
     )
     : null
     return (
-      <div className="view-surah container">
-        <div className="back">
-          <Link to='/'>{this.backButton()}</Link>
-        </div>
-        <div className="content-list" style={{marginLeft: !this.props.surah.surah ? '-10%': 'auto'}}>
-          {currentSurahComponent}
-          <div className="col-2">
-            <SurahsList surahs={this.props.surahs} active={this.props.surah.surah ? this.props.surah.surah.id : null} reciter={this.props.reciter.id} />
+      <Overdrive id="hoe" duration={1000} animationDelay={5}>
+        <div className="view-surah container">
+          <div className="back">
+            <Link to='/'>{this.backButton()}</Link>
+          </div>
+          <div className="content-list" style={{marginLeft: !this.props.surah.surah ? '-10%': 'auto'}}>
+            {currentSurahComponent}
+            <div className="col-2">
+              <SurahsList surahs={this.props.surahs} active={this.props.surah.surah ? this.props.surah.surah.id : null} reciter={this.props.reciter.id} />
+            </div>
           </div>
         </div>
-      </div>
+      </Overdrive>
     )
   }
 }

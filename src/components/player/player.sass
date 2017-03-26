@@ -1,7 +1,26 @@
 .player
-  margin-top: 30%
-  display: flex
-  align-items: center
+  background-color: #116ECC
+  position: fixed
+  bottom: 0
+  width: 100%
+  transition: .3s linear
+  &.home-player
+    height: 12vh
+    .group-control
+      transition: .3s linear
+      position: relative
+      left: 50%
+      top: 10%
+      transform: translateX(-10%)
+  &.blue
+    height: 18vh
+    .group-control
+      transition: .3s linear
+      left: 32%
+  .group-control
+    position: relative
+    display: flex
+    align-items: center
   span
     cursor: pointer
   .controls
