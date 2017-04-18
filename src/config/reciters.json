@@ -696,7 +696,7 @@
     {
       "id": "22",
       "name": "Kha  lid Abdulkafi",
-      "Server": "ht tp://server11.mp3quran.net/kafi",
+      "Server": "http://server11.mp3quran.net/kafi",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "11  4",
       "letter": "K  ",
@@ -705,7 +705,7 @@
     {
       "id": "20",
       "name": "Kha  lid Al-Jileel",
-      "Server": "ht tp://server10.mp3quran.net/jleel",
+      "Server": "http://server10.mp3quran.net/jleel",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "7 ",
       "letter":   "K",
@@ -714,7 +714,7 @@
     {
       "id": "218",
       "name": "Kha  lid Al-Shoraimy",
-      "Server": "ht tp://server12.mp3quran.net/shoraimy",
+      "Server": "http://server12.mp3quran.net/shoraimy",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "73  ",
       "letter": "K  ",
@@ -723,7 +723,7 @@
     {
       "id": "23",
       "name": "Kha  lid Al-Wehabi",
-      "Server": "ht tp://server11.mp3quran.net/whabi",
+      "Server": "http://server11.mp3quran.net/whabi",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "3 ",
       "letter":   "K",
@@ -732,7 +732,7 @@
     {
       "id": "226",
       "name": "Kha  lid Algamdi",
-      "Server": "ht tp://server6.mp3quran.net/ghamdi",
+      "Server": "http://server6.mp3quran.net/ghamdi",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "28  ",
       "letter": "K  ",
@@ -741,7 +741,7 @@
     {
       "id": "159",
       "name": "Kha  lid Almohana",
-      "Server": "ht tp://server11.mp3quran.net/mohna",
+      "Server": "http://server11.mp3quran.net/mohna",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "11  4",
       "letter": "K  ",
@@ -1263,7 +1263,7 @@
     {
       "id": "27",
       "name": "Rac  hid Belalya",
-      "Server": "ht tp://server6.mp3quran.net/bl3",
+      "Server": "http://server6.mp3quran.net/bl3",
       "rewaya": "R  ewayat Hafs A'n Assem",
       "count": "5 ",
       "letter":   "R",
