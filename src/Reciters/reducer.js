@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
         alphabet,
         R.map(x => R.filter(R.propEq('letter', x), action.payload), alphabet)
       )
+    default:
+      return state
   }
-  return state
 }
