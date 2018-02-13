@@ -26,10 +26,10 @@ const Row = styled.div`
   }
 `
 
-const Surahs = ({suras}) => {
+const Surahs = ({suras, reciterId, onStartTrack}) => {
   if (!suras) return null
   const surahsList = suras.map(x => (
-    <Row key={x.id}>
+    <Row onDoubleClick={() => onStartTrack(x.url)} key={x.id}>
       <span className='number'>{x.id}</span>
       <span className='name'>{x.name}</span>
     </Row>

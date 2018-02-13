@@ -12,15 +12,15 @@ const Container = styled.div`
   margin: 0 auto;
 `
 
-const ReciterDetails = ({reciter}) => {
+const ReciterDetails = ({reciter, onStartTrack}) => {
   if (R.equals(reciter, 404)) {
     return <h1>Not Found</h1>
   }
-  const {name, count, rewaya, suras} = reciter
+  const {id, name, count, rewaya, suras} = reciter
   return (
     <Container>
       <Header name={name} rewaya={rewaya} count={count} />
-      <SurahsList suras={suras} />
+      <SurahsList onStartTrack={onStartTrack} reciterId={id} suras={suras} />
     </Container>
   )
 }

@@ -1,0 +1,4 @@
+export default {
+  START_TRACK: 'START_TRACK',
+  PAUSE_TRACK: 'PAUSE_TRACK'
+}
