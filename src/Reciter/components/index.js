@@ -12,15 +12,15 @@ const Container = styled.div`
   margin: 0 auto;
 `
 
-const ReciterDetails = ({reciter, onStartTrack}) => {
+const ReciterDetails = ({reciter, onStartTrack, onPauseStrack, currentTrack, player, handleStartPlaylist}) => {
   if (R.equals(reciter, 404)) {
     return <h1>Not Found</h1>
   }
   const {id, name, count, rewaya, suras} = reciter
   return (
     <Container>
-      <Header name={name} rewaya={rewaya} count={count} />
-      <SurahsList onStartTrack={onStartTrack} reciterId={id} suras={suras} />
+      <Header player={player} onPauseStrack={onPauseStrack} handleStartPlaylist={handleStartPlaylist} name={name} rewaya={rewaya} count={count} />
+      <SurahsList currentTrack={currentTrack} onStartTrack={onStartTrack} reciterId={id} suras={suras} />
     </Container>
   )
 }

@@ -12,12 +12,12 @@ export default (state = initialState, action) => {
       return R.assoc(
         'suras',
         R.map(
-          x =>
-            R.assoc(
-              'url',
-              `${reciter.Server}/${(`000` + x).slice(-3)}.mp3`,
-              surahs[R.dec(parseInt(x, 10))]
-            ),
+          x => ({
+            ...surahs[R.dec(parseInt(x, 10))],
+            url: `${reciter.Server}/${(`000` + x).slice(-3)}.mp3`,
+            reciterName: reciter.name,
+            reciterId: reciter.id
+          }),
           reciterSuras
         ),
         reciter

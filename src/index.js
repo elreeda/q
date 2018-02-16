@@ -18,6 +18,7 @@ injectGlobal`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #f6f9fc;
+    margin: 0;
   }
   * {
     box-sizing: border-box;
