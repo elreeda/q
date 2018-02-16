@@ -13,6 +13,12 @@ export const pauseTrack = () => {
   }
 }
 
+export const resumeTrack = () => {
+  return {
+    type: t.RESUME_TRACK
+  }
+}
+
 export const startPlaylist = (playlist) => {
   return {
     type: t.START_PLAYLIST,
