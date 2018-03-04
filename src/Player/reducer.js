@@ -6,7 +6,8 @@ const initialState = {
   pausedAtTime: 0,
   queue: {
     currentTrack: null,
-    nextTracks: []
+    nextTracks: [],
+    queuedTracks: []
   }
 }
 
@@ -17,18 +18,6 @@ export default (state = initialState, action) => {
       const player = new Audio(surah.url)
       // TODO: Uncaught (in promise) DOMException: The play() request was
       // interrupted by a call to pause(). https://goo.gl/LdLk22
-      // console.log(R.equals(surah, state.queue.currentTrack))
-      // console.log(surah)
-      // console.log(R.equals(surah, state.queue.currentTrack))
-      // if (state.pausedAtTime > 0 && R.equals(surah, state.queue.currentTrack)) {
-      //   const newPlayer = state.player
-      //   newPlayer.currentTime = state.pausedAtTime
-      //   newPlayer.play()
-      //   return {
-      //     ...state,
-      //     pausedAtTime: 0
-      //   }
-      // }
       player.load()
       !!state.player && state.player.pause()
       const playPromise = player.play()
@@ -75,6 +64,18 @@ export default (state = initialState, action) => {
               }),
               action.payload.suras
             )
+          ]
+        }
+      }
+
+    case t.ADD_TO_QUEUE:
+      return {
+        ...state,
+        queue: {
+          ...state.queue,
+          queuedTracks: [
+            ...state.queue.queuedTracks,
+            action.payload
           ]
         }
       }

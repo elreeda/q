@@ -25,3 +25,10 @@ export const startPlaylist = (playlist) => {
     payload: playlist
   }
 }
+
+export const addToQueue = (surah) => {
+  return {
+    type: t.ADD_TO_QUEUE,
+    payload: surah
+  }
+}

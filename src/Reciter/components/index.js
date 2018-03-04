@@ -17,7 +17,8 @@ const ReciterDetails = ({
   currentTrack,
   player,
   resumeTrack,
-  handleStartPlaylist
+  handleStartPlaylist,
+  handleAddToQueue
 }) => {
   if (R.equals(reciter, 404)) {
     return <h1>Not Found</h1>
@@ -35,6 +36,7 @@ const ReciterDetails = ({
         count={count} />
       <SurahsList
         player={player}
+        handleAddToQueue={handleAddToQueue}
         currentTrack={currentTrack}
         onStartTrack={onStartTrack}
         resumeTrack={resumeTrack}

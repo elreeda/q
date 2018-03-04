@@ -58,20 +58,22 @@ const Progress = styled.div`
   }
 `
 
+const ProgressStatus = styled.div.attrs({
+  style: ({progress}) => ({width: progress.toFixed(4) + '%'})
+})`
+  background-color: #FFF;
+  height: 3px;
+  transition-property: width, background-color;
+  transition-duration: 0.1s;
+  transition-timing-function: cubic-bezier(1,0,.7,1);
+`
+
 const ProgressBar = styled.div`
   height: 3px;
   width: 70%;
   background-color: #bdb2b2;
   margin: 0 20px;
   border-radius: 3px;
-  > div {
-    background-color: #FFF;
-    height: 3px;
-    transition-property: width, background-color;
-    transition-duration: 0.1s;
-    transition-timing-function: cubic-bezier(1,0,.7,1);
-    width: ${props => props.progress.toFixed(4)}%;
-  }
 `
 
 const Details = styled.div`
@@ -113,8 +115,8 @@ const Player = ({playback, currentTime, duration, resumeTrack, pauseTrack}) => {
         </div>
         <Progress>
           <span className='current'>{currentTimeString}</span>
-          <ProgressBar progress={duration > 0 ? (currentTime / duration ) * 100 : 0}>
-            <div />
+          <ProgressBar >
+            <ProgressStatus progress={duration > 0 ? (currentTime / duration ) * 100 : 0} />
           </ProgressBar>
           <span className='ends'>{durationString}</span>
         </Progress>

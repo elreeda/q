@@ -3,7 +3,13 @@ import * as R from 'ramda'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getReciter } from './actions'
-import { startTrack, startPlaylist, pauseTrack, resumeTrack } from '../Player/actions'
+import {
+  startTrack,
+  startPlaylist,
+  pauseTrack,
+  resumeTrack,
+  addToQueue
+} from '../Player/actions'
 
 import ReciterDetails from './components'
 
@@ -31,11 +37,19 @@ class ReciterDetailsContainer extends React.Component {
       currentTrack={currentTrack}
       handleStartPlaylist={this.startPlaylist}
       onStartTrack={startTrack}
+      handleAddToQueue={this.props.addToQueue}
       reciter={reciter} />
   }
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getReciter, startTrack, startPlaylist, pauseTrack, resumeTrack }, dispatch)
+  return bindActionCreators({
+    getReciter,
+    startTrack,
+    startPlaylist,
+    pauseTrack,
+    resumeTrack,
+    addToQueue
+  }, dispatch)
 }
 const mapStateToProps = (state) => {
   return R.pick(['reciter', 'playback'], state)

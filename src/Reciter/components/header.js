@@ -40,6 +40,9 @@ const StyleBase = styled.div`
     &:hover {
       box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
     }
+    &:focus {
+      outline: 0;
+    }
   }
 `
 
@@ -61,9 +64,7 @@ const Header = ({
 }) => {
   return (
     <StyleBase>
-      <Link to='/'>
-        <Bacc />
-      </Link>
+      <Link to='/'> <Bacc /></Link>
       <span>{rewaya}</span>
       <h1>{name}</h1>
       <strong>{count} surahs</strong>

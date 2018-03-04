@@ -15,6 +15,9 @@ class PlayerContainer extends React.Component {
     }
   }
   componentWillReceiveProps (nextProps) {
+    if (!nextProps.playback.player) {
+      return
+    }
     nextProps.playback.player.ontimeupdate = () => {
       const currentTime = nextProps.playback.player.currentTime
       const duration = nextProps.playback.player.duration

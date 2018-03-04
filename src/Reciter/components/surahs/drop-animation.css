@@ -1,0 +1,32 @@
+.drop-enter-active {
+  transition: opacity .25s cubic-bezier(0,1,.4,1),transform .25s cubic-bezier(.18,1.25,.4,1);
+}
+
+.drop-leave-active {
+  transition: opacity .2s ease-in,transform .2s ease-in;
+}
+
+.drop-enter {
+  opacity: 0;
+  transform: scale(.85);
+}
+
+.drop-leave.drop-leave-active {
+  opacity: 0;
+  transform: scale(.95);
+}
+
+.drop-enter.drop-enter-active, .drop-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-appear {
+  opacity: 0.01
+}
+
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 350ms ease-in;
+}
