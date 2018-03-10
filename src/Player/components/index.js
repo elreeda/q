@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const StyleBase = styled.div`
@@ -141,6 +142,16 @@ const Player = ({
       </div>
     </StyleBase>
   )
+}
+
+Player.propTypes = {
+  playback: PropTypes.object.isRequired,
+  currentTime: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  resumeTrack: PropTypes.func.isRequired,
+  pauseTrack: PropTypes.func.isRequired,
+  nextTrack: PropTypes.func.isRequired,
+  previousTrack: PropTypes.func.isRequired
 }
 
 export default Player

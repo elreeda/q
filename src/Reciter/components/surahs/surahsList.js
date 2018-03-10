@@ -149,6 +149,7 @@ class Surahs extends React.Component {
     if(nextProps.player) return
     const { location: { search }} = this.props
     const { surah: surahId } = qs.parse(search.substring(1))
+    if (!surahId) return
     const { suras } = nextProps
     const surah = R.find(R.propEq('id', surahId))(suras)
     if (!surah) {

@@ -107,7 +107,7 @@ export default (state = initialState, action) => {
             queuedTracks
           }
         }
-      } else {
+      } else if (state.queue.nextTracks.length > 0) {
         const currentTrack = state.queue.nextTracks[0]
         const nextTracks = R.slice(1, Infinity, state.queue.nextTracks)
         const player = new Audio(currentTrack.url)
@@ -115,6 +115,20 @@ export default (state = initialState, action) => {
         !!state.player && state.player.pause()
         const playPromise = player.play()
         playPromise.catch()
+        return {
+          ...state,
+          player,
+          queue: {
+            ...state.queue,
+            currentTrack,
+            nextTracks
+          }
+        }
+      } else {
+        const currentTrack = state.queue.currentPlayList[0]
+        const nextTracks = R.slice(1, Infinity, state.queue.currentPlayList)
+        const player = new Audio(currentTrack.url)
+        player.load()
         return {
           ...state,
           player,

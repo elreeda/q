@@ -19,6 +19,7 @@ class PlayerContainer extends React.Component {
       duration: 0
     }
   }
+
   componentWillReceiveProps (nextProps) {
     if (!nextProps.playback.player) {
       return
@@ -28,7 +29,11 @@ class PlayerContainer extends React.Component {
       const duration = nextProps.playback.player.duration
       this.setState({ currentTime, duration })
     }
+    nextProps.playback.player.onended = () => {
+      this.props.nextTrack()
+    }
   }
+
   render () {
     return (
       <Player
@@ -42,12 +47,14 @@ class PlayerContainer extends React.Component {
     )
   }
 }
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { pauseTrack, resumeTrack, nextTrack, previousTrack },
     dispatch
   )
 }
+
 const mapStateToProps = state => {
   return R.pick(['playback'], state)
 }
