@@ -1,11 +1,11 @@
 import React from 'react'
-import styled, {css} from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const StyleBase = styled.div`
   position: fixed;
   width: 100%;
   bottom: 0;
-  color: #FFF;
+  color: #fff;
   background-color: #016bcf;
   padding: 10px 30px;
   > div {
@@ -59,13 +59,13 @@ const Progress = styled.div`
 `
 
 const ProgressStatus = styled.div.attrs({
-  style: ({progress}) => ({width: progress.toFixed(4) + '%'})
+  style: ({ progress }) => ({ width: progress.toFixed(4) + '%' })
 })`
-  background-color: #FFF;
+  background-color: #fff;
   height: 3px;
   transition-property: width, background-color;
   transition-duration: 0.1s;
-  transition-timing-function: cubic-bezier(1,0,.7,1);
+  transition-timing-function: cubic-bezier(1, 0, 0.7, 1);
 `
 
 const ProgressBar = styled.div`
@@ -80,8 +80,9 @@ const Details = styled.div`
   margin-left: 20px;
   width: 150px;
   height: 40px;
-  letter-spacing: .9px;
-  h5, h3 {
+  letter-spacing: 0.9px;
+  h5,
+  h3 {
     margin: 0;
   }
   h5 {
@@ -93,30 +94,43 @@ const Details = styled.div`
   }
 `
 
-const Player = ({playback, currentTime, duration, resumeTrack, pauseTrack}) => {
+const Player = ({
+  playback,
+  currentTime,
+  duration,
+  resumeTrack,
+  pauseTrack,
+  nextTrack,
+  previousTrack
+}) => {
   const { currentTrack } = playback.queue
-  const currentTimeString = new Date(currentTime * 1000).toISOString().substr(11, 8)
-  const durationString = new Date((duration || 0) * 1000).toISOString().substr(11, 8)
+  const currentTimeString = new Date(currentTime * 1000)
+    .toISOString()
+    .substr(11, 8)
+  const durationString = new Date((duration || 0) * 1000)
+    .toISOString()
+    .substr(11, 8)
   return (
     <StyleBase>
       <div>
-        <div className="control">
-          <div className='player-prev' />
+        <div className='control'>
+          <div className='player-prev' onClick={previousTrack} />
           <PlayerControl
             onClick={
               playback.player
-              ? playback.player.paused
-                ? resumeTrack
-                : pauseTrack
-              : undefined
+                ? playback.player.paused ? resumeTrack : pauseTrack
+                : undefined
             }
-            isPlaying={playback.player && !playback.player.paused} />
-          <div className='player-next' />
+            isPlaying={playback.player && !playback.player.paused}
+          />
+          <div className='player-next' onClick={nextTrack} />
         </div>
         <Progress>
           <span className='current'>{currentTimeString}</span>
-          <ProgressBar >
-            <ProgressStatus progress={duration > 0 ? (currentTime / duration ) * 100 : 0} />
+          <ProgressBar>
+            <ProgressStatus
+              progress={duration > 0 ? currentTime / duration * 100 : 0}
+            />
           </ProgressBar>
           <span className='ends'>{durationString}</span>
         </Progress>

@@ -24,8 +24,10 @@ class ReciterDetailsContainer extends React.Component {
   }
   
   startPlaylist () {
-    this.props.startPlaylist(this.props.reciter)
-    this.props.startTrack(this.props.reciter.suras[0])
+    this.props.startTrack({
+      surah: this.props.reciter.suras[0],
+      suras: this.props.reciter.suras
+    })
   }
   
   render () {

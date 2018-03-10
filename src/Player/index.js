@@ -2,7 +2,12 @@ import React from 'react'
 import * as R from 'ramda'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { pauseTrack, resumeTrack } from '../Player/actions'
+import {
+  pauseTrack,
+  resumeTrack,
+  nextTrack,
+  previousTrack
+} from '../Player/actions'
 
 import Player from './components'
 
@@ -28,16 +33,22 @@ class PlayerContainer extends React.Component {
     return (
       <Player
         {...this.state}
+        nextTrack={this.props.nextTrack}
+        previousTrack={this.props.previousTrack}
         pauseTrack={this.props.pauseTrack}
         resumeTrack={this.props.resumeTrack}
-        playback={this.props.playback} />
+        playback={this.props.playback}
+      />
     )
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ pauseTrack, resumeTrack }, dispatch)
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    { pauseTrack, resumeTrack, nextTrack, previousTrack },
+    dispatch
+  )
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return R.pick(['playback'], state)
 }
 

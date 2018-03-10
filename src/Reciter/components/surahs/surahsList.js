@@ -2,6 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import * as R from 'ramda'
 import { CSSTransitionGroup } from 'react-transition-group'
+import { withRouter } from 'react-router-dom'
+import qs from 'qs'
 import './drop-animation.css'
 
 const StyledBase = styled.div`
@@ -19,8 +21,12 @@ const StyledBase = styled.div`
     padding: 5px 0;
     box-shadow: 1px 1px 5px 1px rgba(0,0,0,.2);
     span {
+      cursor: pointer;
       display: block;
       padding: 7px 10px;
+      &:hover {
+        background-color: #f0f1f3;
+      }
     }
   }
 `
@@ -85,7 +91,7 @@ const Row = styled.div`
     margin-left: 10px;
     opacity: 0;
     cursor: pointer;
-    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDQwOCA0MDgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwOCA0MDg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBpZD0ibW9yZS1ob3JpeiI+CgkJPHBhdGggZD0iTTUxLDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MXMyMi45NSw1MSw1MSw1MXM1MS0yMi45NSw1MS01MVM3OS4wNSwxNTMsNTEsMTUzeiBNMzU3LDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MSAgICBzMjIuOTUsNTEsNTEsNTFzNTEtMjIuOTUsNTEtNTFTMzg1LjA1LDE1MywzNTcsMTUzeiBNMjA0LDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MXMyMi45NSw1MSw1MSw1MXM1MS0yMi45NSw1MS01MSAgICBTMjMyLjA1LDE1MywyMDQsMTUzeiIgZmlsbD0iIzZiN2M5MyIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=)
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDQwOCA0MDgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQwOCA0MDg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBpZD0ibW9yZS1ob3JpeiI+CgkJPHBhdGggZD0iTTUxLDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MXMyMi45NSw1MSw1MSw1MXM1MS0yMi45NSw1MS01MVM3OS4wNSwxNTMsNTEsMTUzeiBNMzU3LDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MSAgICBzMjIuOTUsNTEsNTEsNTFzNTEtMjIuOTUsNTEtNTFTMzg1LjA1LDE1MywzNTcsMTUzeiBNMjA0LDE1M2MtMjguMDUsMC01MSwyMi45NS01MSw1MXMyMi45NSw1MSw1MSw1MXM1MS0yMi45NSw1MS01MSAgICBTMjMyLjA1LDE1MywyMDQsMTUzeiIgZmlsbD0iIzZiN2M5MyIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
   }
   &:hover {
     .control {
@@ -107,6 +113,7 @@ class Surahs extends React.Component {
     }
     this.toggleMoreOptions = this.toggleMoreOptions.bind(this)
     this.onOutsideClick = this.onOutsideClick.bind(this)
+    this.copySurahToClipBoard = this.copySurahToClipBoard.bind(this)
     this.addSurahToQueue = this.addSurahToQueue.bind(this)
   }
 
@@ -138,8 +145,40 @@ class Surahs extends React.Component {
     document.removeEventListener('mousedown', this.onOutsideClick)
   }
 
-  addSurahToQueue () {
+  componentWillReceiveProps (nextProps) {
+    if(nextProps.player) return
+    const { location: { search }} = this.props
+    const { surah: surahId } = qs.parse(search.substring(1))
+    const { suras } = nextProps
+    const surah = R.find(R.propEq('id', surahId))(suras)
+    if (!surah) {
+      console.log('surah not found.')
+      return
+    } 
+    this.props.onStartTrack({
+      surah,
+      suras
+    })
+  }
+
+  addSurahToQueue (e) {
     this.props.handleAddToQueue(this.state.optionsList.surah)
+    this.toggleMoreOptions(null, e)
+  }
+
+  copySurahToClipBoard (e) {
+    const input = document.createElement('input')
+    input.setAttribute('id', 'clipboard')
+    input.setAttribute('value', this.generateShareUrl(this.state.optionsList.surah.id))
+    document.body.appendChild(input)
+    input.select()
+    document.execCommand('copy')
+    document.body.removeChild(input)
+    this.toggleMoreOptions(null, e)
+  }
+
+  generateShareUrl (id) {
+    return window.location.origin + window.location.pathname + '?surah=' + id
   }
   
   render () {
@@ -148,7 +187,6 @@ class Surahs extends React.Component {
       onPauseStrack,
       player,
       suras,
-      reciterId,
       currentTrack,
       onStartTrack
     } = this.props
@@ -158,7 +196,7 @@ class Surahs extends React.Component {
     const surahsList = suras.map(x => {
       const active = R.equals(x, currentTrack)
       return (
-        <Row active={active} onDoubleClick={() => onStartTrack(x)} key={x.id}>
+        <Row active={active} onDoubleClick={() => onStartTrack({surah: x, suras})} key={x.id}>
           <span className='number'>{x.id}</span>
           <span className='name'>{x.name}</span>
           {
@@ -195,7 +233,7 @@ class Surahs extends React.Component {
                   className='options-list'
                   style={{left: optionsList.left, top: optionsList.top}}>
                   <span onClick={this.addSurahToQueue}>Add to queue</span>
-                  <span>Copy link to clipboard</span>
+                  <span onClick={this.copySurahToClipBoard}>Copy link to clipboard</span>
                 </div>
               )
             }
@@ -205,4 +243,4 @@ class Surahs extends React.Component {
   }
 }
 
-export default Surahs
+export default withRouter(Surahs)
