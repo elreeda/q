@@ -6,7 +6,8 @@ import {
   pauseTrack,
   resumeTrack,
   nextTrack,
-  previousTrack
+  previousTrack,
+  updatePlayerProgress
 } from '../Player/actions'
 
 import Player from './components'
@@ -18,6 +19,7 @@ class PlayerContainer extends React.Component {
       currentTime: 0,
       duration: 0
     }
+    this.handleProgressTransition = this.handleProgressTransition.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -34,6 +36,17 @@ class PlayerContainer extends React.Component {
     }
   }
 
+  handleProgressTransition (e, uiPlayer) {
+    if (!this.props.playback.player) {
+      return
+    }
+    const time = this.props.playback.player.duration
+    const playerWidth = uiPlayer.clientWidth
+    const clickedPositionX = e.clientX - e.target.getBoundingClientRect().left
+    const second = (clickedPositionX * time) / playerWidth
+    this.props.updatePlayerProgress(second)
+  }
+
   render () {
     return (
       <Player
@@ -43,6 +56,7 @@ class PlayerContainer extends React.Component {
         pauseTrack={this.props.pauseTrack}
         resumeTrack={this.props.resumeTrack}
         playback={this.props.playback}
+        handleProgressTransition={this.handleProgressTransition}
       />
     )
   }
@@ -50,7 +64,7 @@ class PlayerContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { pauseTrack, resumeTrack, nextTrack, previousTrack },
+    { pauseTrack, resumeTrack, nextTrack, previousTrack, updatePlayerProgress },
     dispatch
   )
 }

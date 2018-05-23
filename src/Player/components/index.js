@@ -75,6 +75,7 @@ const ProgressBar = styled.div`
   background-color: #bdb2b2;
   margin: 0 20px;
   border-radius: 3px;
+  cursor: pointer;
 `
 
 const Details = styled.div`
@@ -102,7 +103,8 @@ const Player = ({
   resumeTrack,
   pauseTrack,
   nextTrack,
-  previousTrack
+  previousTrack,
+  handleProgressTransition
 }) => {
   const { currentTrack } = playback.queue
   const currentTimeString = new Date(currentTime * 1000)
@@ -128,7 +130,7 @@ const Player = ({
         </div>
         <Progress>
           <span className='current'>{currentTimeString}</span>
-          <ProgressBar>
+          <ProgressBar innerRef={x => this.uiPlayer = x} onClick={(e) => handleProgressTransition(e, this.uiPlayer)}>
             <ProgressStatus
               progress={duration > 0 ? currentTime / duration * 100 : 0}
             />

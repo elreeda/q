@@ -5,19 +5,21 @@ import styled from 'styled-components'
 import RecitersByLetter from './recitersByLetter'
 
 const Container = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto 100px;
 `
 
 const Reciters = ({ reciters }) => {
   const recitersList = R.map(
-    letter => (
-      <RecitersByLetter
-        key={letter}
-        letter={letter}
-        reciters={reciters[letter]}
-      />
-    ),
+    letter =>
+      reciters[letter].length > 0 ? (
+        <RecitersByLetter
+          key={letter}
+          letter={letter}
+          reciters={reciters[letter]}
+        />
+      ) : null,
     R.keys(reciters)
   )
   return <Container>{recitersList}</Container>
