@@ -107,6 +107,20 @@ export default (state = initialState, action) => {
             queuedTracks
           }
         }
+      } else if (state.queue.nextTracks.length === 0) {
+        const nextTracks = R.slice(1, Infinity, state.queue.currentPlayList)
+        const currentTrack = state.queue.currentPlayList[0]
+        const player = new Audio(currentTrack.url)
+        player.load()
+        return {
+          ...state,
+          player,
+          queue: {
+            ...state.queue,
+            currentTrack,
+            nextTracks
+          }
+        }
       } else {
         const currentTrack = state.queue.nextTracks[0]
         const nextTracks = R.slice(1, Infinity, state.queue.nextTracks)
@@ -148,6 +162,17 @@ export default (state = initialState, action) => {
         }
       }
 
+    case t.UPDATE_PLAYER_PROGRESS:
+      const { payload: { second } } = action
+      if (!state.player) {
+        return state
+      }
+      const updatedPlayer = state.player
+      updatedPlayer.currentTime = second
+      return {
+        ...state,
+        player: updatedPlayer
+      }
     default:
       return state
   }

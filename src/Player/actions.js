@@ -47,3 +47,10 @@ export const previousTrack = () => {
     type: t.PREVIOUS_TRACK
   }
 }
+
+export const updatePlayerProgress = (second) => {
+  return {
+    type: t.UPDATE_PLAYER_PROGRESS,
+    payload: { second }
+  }
+}
