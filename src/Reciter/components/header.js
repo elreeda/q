@@ -5,6 +5,9 @@ import styled from 'styled-components'
 const StyleBase = styled.div`
   margin: 100px 0 50px;
   text-align: center;
+  @media screen and (max-width: 760px) {
+    margin-top: 50px;
+  }
   h1 {
     margin: 5px 0 15px;
     font-size: 44px;
@@ -60,7 +63,9 @@ const Header = ({
   onPauseStrack,
   player,
   handleStartPlaylist,
-  resumeTrack
+  resumeTrack,
+  reciterId,
+  currentTrack
 }) => {
   return (
     <StyleBase>
@@ -68,11 +73,11 @@ const Header = ({
       <span>{rewaya}</span>
       <h1>{name}</h1>
       <strong>{count} surahs</strong>
-      {player && !player.paused ? (
+      {player && !player.paused && currentTrack.reciterId === reciterId ? (
         <button onClick={onPauseStrack}>Pause</button>
       ) : (
         <button
-          onClick={player && player.paused ? resumeTrack : handleStartPlaylist}>
+          onClick={player && player.paused && currentTrack.reciterId === reciterId ? resumeTrack : handleStartPlaylist}>
           Play
         </button>
       )}

@@ -30,6 +30,16 @@ class PlayerContainer extends React.Component {
       const currentTime = nextProps.playback.player.currentTime
       const duration = nextProps.playback.player.duration
       this.setState({ currentTime, duration })
+      if (
+        document.title !==
+        `${nextProps.playback.queue.currentTrack.name} · ${
+          nextProps.playback.queue.currentTrack.reciterName
+        }`
+      ) {
+        document.title = `${nextProps.playback.queue.currentTrack.name} · ${
+          nextProps.playback.queue.currentTrack.reciterName
+        }`
+      }
     }
     nextProps.playback.player.onended = () => {
       this.props.nextTrack()

@@ -32,6 +32,8 @@ const ReciterDetails = ({
         onPauseStrack={onPauseStrack}
         handleStartPlaylist={handleStartPlaylist}
         name={name}
+        currentTrack={currentTrack}
+        reciterId={id}
         rewaya={rewaya}
         count={count} />
       <SurahsList
