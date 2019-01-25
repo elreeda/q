@@ -12,59 +12,61 @@ const StyleBase = styled.div`
   @media screen and (max-width: 760px) {
     padding: 10px 20px 0;
   }
-  > div {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    @media screen and (max-width: 760px) {
-      flex-direction: column;
-      align-items: inherit;
-      > div {
-        &:last-child {
-          margin: -20px 0 0;
-          order: 2;
-          width: calc(100% - 80px);
-          h5, h3 {
-            display: inline;
-          }
-          h5 {
-            &:after {
-              content: ".";
-              display: inline-block;
-              font-size: 25px;
-              line-height: 0;
-              margin: 0 6px;
-              position: relative;
-              top: -3px;
-            }
+`
+
+const Content = styled.div`
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 760px) {
+    flex-direction: column;
+    align-items: inherit;
+    > div {
+      &:last-child {
+        margin: -20px 0 0;
+        order: 2;
+        width: calc(100% - 80px);
+        h5, h3 {
+          display: inline;
+        }
+        h5 {
+          &:after {
+            content: ".";
+            display: inline-block;
+            font-size: 25px;
+            line-height: 0;
+            margin: 0 6px;
+            position: relative;
+            top: -3px;
           }
         }
       }
     }
   }
-  .control {
-    display: flex;
-    @media screen and (max-width: 760px) {
-      order: 2;
-      margin-left: auto;
+`
+
+const Controls = styled.div`
+  display: flex;
+  @media screen and (max-width: 760px) {
+    order: 2;
+    margin-left: auto;
+  }
+  > div {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: 0.15s ease;
+    &:nth-child(2) {
+      margin: 0 15px;
     }
-    > div {
-      width: 16px;
-      height: 16px;
-      background-repeat: no-repeat;
-      cursor: pointer;
-      transition: 0.15s ease;
-      &:nth-child(2) {
-        margin: 0 15px;
-      }
-    }
-    .player-next {
-      background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yIDF2MTRsMTAtN3oiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEyIDFoMnYxNGgtMnYtMTR6Ii8+Cjwvc3ZnPgo=);
-    }
-    .player-prev {
-      transform: rotate(180deg);
-      background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yIDF2MTRsMTAtN3oiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEyIDFoMnYxNGgtMnYtMTR6Ii8+Cjwvc3ZnPgo=);
-    }
+  }
+  .player-next {
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yIDF2MTRsMTAtN3oiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEyIDFoMnYxNGgtMnYtMTR6Ii8+Cjwvc3ZnPgo=);
+  }
+  .player-prev {
+    transform: rotate(180deg);
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yIDF2MTRsMTAtN3oiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTEyIDFoMnYxNGgtMnYtMTR6Ii8+Cjwvc3ZnPgo=);
   }
 `
 
@@ -156,8 +158,8 @@ const Player = ({
     .substr(11, 8)
   return (
     <StyleBase>
-      <div>
-        <div className='control'>
+      <Content>
+        <Controls>
           <div className='player-prev' onClick={previousTrack} />
           <PlayerControl
             onClick={
@@ -168,7 +170,7 @@ const Player = ({
             isPlaying={playback.player && !playback.player.paused}
           />
           <div className='player-next' onClick={nextTrack} />
-        </div>
+        </Controls>
         <Progress>
           <span className='current'>{currentTimeString}</span>
           <ProgressBar innerRef={x => this.uiPlayer = x} onClick={(e) => handleProgressTransition(e, this.uiPlayer)}>
@@ -182,7 +184,7 @@ const Player = ({
           <h5>{currentTrack && currentTrack.reciterName}</h5>
           <h3>{currentTrack && currentTrack.name}</h3>
         </Details>
-      </div>
+      </Content>
     </StyleBase>
   )
 }
